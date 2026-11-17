@@ -10,6 +10,10 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static("public"));
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join('index.html'));
+});
+
 // 2. Endpoint harus POST dan path-nya "/api/chat"
 app.post("/api/chat", async (req, res) => {
     try {
