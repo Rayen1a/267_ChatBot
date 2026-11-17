@@ -1,18 +1,17 @@
 import express from "express";
 import dotenv from "dotenv";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const publicDirectory = path.join(path.dirname(fileURLToPath(import.meta.url)), "public");
 
 // 1. Wajib ada agar bisa membaca JSON dari frontend
 app.use(express.json());
-app.use(express.static("public"));
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join('index.html'));
-});
+app.use(express.static(publicDirectory));
 
 // 2. Endpoint harus POST dan path-nya "/api/chat"
 app.post("/api/chat", async (req, res) => {
@@ -87,7 +86,11 @@ app.post("/api/chat", async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Server berjalan di http://localhost:${PORT}`);
-});
+if (process.env.VERCEL !== "1") {
+    app.listen(PORT, () => {
+        console.log(`Server berjalan di http://localhost:${PORT}`);
+    });
+}
+
+export default app;
 
