@@ -22,7 +22,7 @@ app.post("/api/chat", async (req, res) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                model: "nvidia/llama-3.1-nemotron-ultra-253b-v1:free", // Sesuaikan dengan slug model Anda
+                model: "openrouter/free", // Sesuaikan dengan slug model Anda
                 messages: messages,
                 stream: true
             })
