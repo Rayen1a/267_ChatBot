@@ -26,7 +26,7 @@ app.post("/api/chat", async (req, res) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                model: "openrouter/free", // Sesuaikan dengan slug model Anda
+                model: "inclusionai/ling-3.2-flash:free", // Sesuaikan dengan slug model Anda
                 messages: messages,
                 stream: true
             })
@@ -91,4 +91,3 @@ app.listen(PORT, () => {
     console.log(`Server berjalan di http://localhost:${PORT}`);
 });
 
-module.exports = app;
